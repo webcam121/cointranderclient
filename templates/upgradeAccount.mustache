@@ -1,0 +1,349 @@
+{{#data}}
+<div class="nk-content ">
+<style>
+    .form-dropdown .select2-selection {
+        border: none !important;
+    }
+</style>
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body row">
+                <div class="buysell wide-xs m-auto" style="width:100%">
+                    
+                     <div class="card card-bordered">
+                        <div class="card-inner">
+                            <div id="depositDiv" class="buysell-block">
+                                <form action="#" class="buysell-form">
+                                    <div class="buysell-field form-group">
+                                        <div class="form-label-group">
+                                            <label class="form-label">Choose the algorithm</label>
+                                        </div>
+                                        <div class="dropdown buysell-cc-dropdown">
+                                            <a href="#" class="buysell-cc-choosen">
+                                                <div class="coin-item coin-btc" style="padding: 5px 15px;">
+                                                    <div class="coin-icon" id="algorthumType">
+                                                        
+                                                    </div>
+                                                    <div class="coin-info" style="width: 100%">
+                                                        
+                                                        <select id="tokenType" name="tokenType" class="form-select form-control form-control-lg" data-ui="lg" required>
+                                                            <option value="gd">Apollo</option>
+                                                            <option value="gd+">Thor</option>
+                                                            <option value="pt">Odin</option>
+                                                            <option value="zu">Zeus</option>
+                                                            <option value="st">Staking</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="buysell-field form-group">
+                                        <div class="form-label-group">
+                                            <label class="form-label">Payment Method</label>
+                                        </div>
+                                        <div class="form-pm-group">
+                                            <ul class="buysell-pm-list depositMethod">
+                                               <!-- <li class="buysell-pm-item">
+                                                    <input class="buysell-pm-control" type="radio" name="bs-method" id="creditCard" disabled/>
+                                                    <label class="buysell-pm-label" for="creditCard">
+                                                        <span class="pm-name">Credit Card</span>
+                                                        <span class="pm-icon"><em class="icon ni ni-cc-alt2"></em></span>
+                                                    </label>
+                                                </li>-->
+                                               <!-- <li class="buysell-pm-item">
+                                                    <input class="buysell-pm-control" type="radio" name="bs-method" id="bankTransfer" disabled/>
+                                                    <label class="buysell-pm-label" for="bankTransfer">
+                                                        <span class="pm-name">Bank Transfer</span>
+                                                        <span class="pm-icon"><em class="icon ni ni-building"></em></span>
+                                                    </label>
+                                                </li>-->
+                                                <li class="buysell-pm-item">
+                                                    <input class="buysell-pm-control" type="radio" name="bs-method" id="cryptoCurrency" />
+                                                    <label class="buysell-pm-label" for="cryptoCurrency">
+                                                        <span class="pm-name">Cryptocurrency</span>
+                                                        <span class="pm-icon"><em class="icon ni ni-bitcoin"></em></span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="buysell-field form-group">
+                                        <div class="form-label-group">
+                                            <label class="form-label" for="depositAmount">Deposit equivalent in fiat</label>
+                                        </div>
+                                        <div class="form-control-group">
+                                        <div id="textAmount" name="textAmount">
+
+                                            
+                                        </div>
+                                            <div class="form-dropdown">
+                                                <select class="form-select" id="depositCurrency" data-ui="lg">
+                                                    <option value="USD">USDT</option>
+                                                    
+                                            
+                                               
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="buysell-field form-action">
+                                        <a href="#" id="continueDeposit" class="btn btn-lg btn-block btn-primary"  data-toggle="modal" data-target="#depositModal">Upgrade Account</a>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>                                
+                </div>                                    
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+     $("#algorthumType").html('<img src="./assets/images/banner/Apollo.svg" style="width:60px" alt="algorthum Image" />');
+     $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="1000" placeholder="Min Amount is 1000$" >');
+    $("#tokenType").change(function(){
+    if($(this).val() == 'gd'){
+        $("#algorthumType").html('<img src="./assets/images/banner/Apollo.svg" style="width:60px" alt="algorthum Image" />');
+        $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="1000" placeholder="Min Amount is 1000$" >');
+    }else if($(this).val() == 'gd+') {
+        $("#algorthumType").html('<img src="./assets/images/banner/Thor.svg" style="width:60px" alt="algorthum Image" />');
+        $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="5000" placeholder="Min Amount is 5000$" >');
+    }else if($(this).val() == 'pt') {
+        $("#algorthumType").html('<img src="./assets/images/banner/Odin.svg" style="width:60px" alt="algorthum Image" />');
+        $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="20000" placeholder="Min Amount is 20000$" >');
+    }else if($(this).val() == 'zu') {
+        $("#algorthumType").html('<img src="./assets/images/banner/Zeus.svg" style="width:60px" alt="algorthum Image" />');
+        $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="50000" placeholder="Min Amount is 50000$" >');
+    }else if($(this).val() == 'st') {
+        $("#algorthumType").html('<img src="./assets/images/banner/Staking.svg" style="width:60px" alt="algorthum Image" />');
+        $("#textAmount").html('<input type="text" class="form-control form-control-lg form-control-number" id="depositAmount" autocomplete="off" name="depositAmount" min="20000" placeholder="Min Amount is 20000$" >');
+    }
+   
+  });
+
+    $('#btnDeposit').click(function() {
+        $('#depositDiv').show();
+        $('#withdrawDiv').hide();
+
+        $('#walletQRCodeImage').attr('src', '/uploads/documents/BTC-QR-CODE.png');
+        $('.walletAddressTitle').text('BTC Deposit Address');
+        $('#walletAddress').text('bc1qqt5wmadxltm2zkejt0rqvmzhg9t7ptc8af0jrm');
+    });
+
+    $('#btnDeposit').click();
+
+    $('#btnWithdraw').click(function() {
+        $('#depositDiv').hide();
+        $('#withdrawDiv').show();
+
+        $('#walletQRCodeImage').attr('src', '/uploads/documents/BTC-QR-CODE.png');
+        $('.walletAddressTitle').text('BTC Deposit Address');
+        $('#walletAddress').text('bc1qqt5wmadxltm2zkejt0rqvmzhg9t7ptc8af0jrm');
+    });
+
+    $('#downloadPayment').hide();
+    $('#viewWalletAddress').show();
+
+    $('#bankTransfer').on('click', function() {
+        $('#depositMethod').attr('data', 'bankTransfer');
+        $('#depositMethod').html('Bank Transfer');
+
+        var currencyOption = `<option value="USD">USDT</option>`;
+        $('#depositCurrency').html(currencyOption);
+        $('#depositCurrency1').text('USDT');
+
+        $('#downloadPayment').show();
+        $('#viewWalletAddress').hide();
+    });
+
+    $('#cryptoCurrency').on('click', function() {
+        $('#depositMethod').attr('data', 'cryptoCurrency');
+        $('#depositMethod').html('Cryptocurrency');
+
+        var currencyOption = `<option value="USD">USDT</option>`;
+        $('#depositCurrency').html(currencyOption);
+        $('#depositCurrency1').text('BTC');
+
+        $('#walletQRCodeImage').attr('src', '/uploads/documents/BTC-QR-CODE.png');
+        $('.walletAddressTitle').text('BTC wallet address');
+        $('#walletAddress').text('bc1qqt5wmadxltm2zkejt0rqvmzhg9t7ptc8af0jrm');
+
+        $('#downloadPayment').hide();
+        $('#viewWalletAddress').show();
+    });
+
+    $('#depositAmount').on('blur', function(e) {
+        $('#continueDeposit').attr('data-target', '#depositModal');
+        var minDeposit = parseInt($(this).attr('min'));
+        var depositAmount = parseInt($(this).val().replace(',', ''));
+        if (isNaN(depositAmount)) {
+            
+            $(this).val(minDeposit.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+            $('#depositAmount1').text($(this).val());
+        } else {
+            if (minDeposit > depositAmount) {
+                $(this).val(minDeposit.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+                $('#depositAmount1').text($(this).val());
+            } else {
+                $(this).val(depositAmount.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+                $('#depositAmount1').text($(this).val());
+            }
+        }
+    });
+
+    $('#depositCurrency').on('change', function() {
+        $('#depositCurrency1').text($(this).val());
+        $('#downloadPayment').attr('href', '/uploads/documents/Cointraderclient-'+ $(this).val() +'-Remittance.pdf');
+
+        var currency = $(this).val();
+        var walletAddressTitle = currency +' wallet address ';
+        var walletAddress = '';
+        switch(currency) {
+            case 'BTC':
+                walletAddress = 'bc1qqt5wmadxltm2zkejt0rqvmzhg9t7ptc8af0jrm';
+            break;
+
+            case 'ETH':
+                walletAddress = '0x8540F0D6655e52FB9d68e2640b1e80120c803CF5';
+            break;
+
+            case 'LTC':
+                walletAddress = 'LNYWvmSC2716dZVwxteYDCQ7BTe42Gpd2b';
+            break;
+
+            case 'BCH':
+                walletAddress = 'qqu03jun3cmcexnkl8spq0h7525a05zsq56zzrgp3m';
+            break;
+
+            case 'LINK':
+                walletAddress = '0x8540F0D6655e52FB9d68e2640b1e80120c803CF5';
+            break;
+
+            case 'XRP':
+                walletAddress = 'rnRghBiA4MZ9c7crVnQoWspMcM8ZBnXgfQ';
+            break;
+        }
+
+        $('#walletQRCodeImage').attr('src', '/uploads/documents/'+ currency +'-QR-CODE.png');
+        $('.walletAddressTitle').text(walletAddressTitle);
+        $('#walletAddress').text(walletAddress);
+    });
+
+    $('#continueDeposit').on('click', function() {  
+        if ($('#depositAmount').val() == '') {
+            $(this).attr('data-target', ' ');
+            $('#depositAmount').focus();
+        }
+        var amount;
+        if(isNaN($('#depositAmount').val())) {
+           var  x = parseInt($('#depositAmount').val().replace(/[,]/g,''));
+        }
+         if($('#tokenType').val() =='gd'){
+            if( x > 1000){
+                amount = $('#depositAmount').val() + '$';
+            }else{
+                amount = 1000 + '$';
+            }
+         }else if($('#tokenType').val() =='gd+'){
+            if( x > 5000){
+                amount = $('#depositAmount').val() + '$';
+            }else{
+                amount = 5000 + '$';
+            }
+         }else if($('#tokenType').val() =='pt'){
+            if( x > 20000){
+                amount = $('#depositAmount').val() + '$';
+            }else{
+                amount = 20000 + '$';
+            }
+         }else if($('#tokenType').val() =='zu'){
+            if( x > 50000){
+                amount = $('#depositAmount').val() + '$';
+            }else{
+                amount = 50000 + '$';
+            }
+         }else if($('#tokenType').val() =='st'){
+            if( x > 20000){
+                amount = $('#depositAmount').val() + '$';
+            }else{
+                amount = 20000 + '$';
+            }
+         }
+         
+        
+        
+         $('#depositAmount1').text(amount);
+
+    });
+
+
+    $('#debitCard').on('click', function() {
+        $('#withdrawMethod').attr('data', 'debitCard');
+        $('#withdrawMethod').html('Cointraderclient Debit Card');
+        $('#withdrawCurrency1').val('USD');
+
+        var currencyOption = `<option value="USD">USDT</option>`;
+        $('#withdrawCurrency').html(currencyOption);
+    });
+
+    $('#bankTransfer1').on('click', function() {
+        $('#withdrawMethod').attr('data', 'bankTransfer');
+        $('#withdrawMethod').html('Bank Transfer');
+        $('#withdrawCurrency1').val('USD');
+
+        var currencyOption = `<option value="USD">USDT</option>`;
+        $('#withdrawCurrency').html(currencyOption);
+    });
+
+    $('#cryptoCurrency1').on('click', function() {
+        $('#withdrawMethod').attr('data', 'cryptoCurrency');
+        $('#withdrawMethod').html('Cryptocurrency');
+        $('#withdrawCurrency1').val('BTC');
+
+        var currencyOption = `<option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="LTC">LTC</option>
+                        <option value="XRP">XRP</option>
+                        <option value="LINK">LINK</option>
+                        <option value="BCH">BCH</option>`;
+        $('#withdrawCurrency').html(currencyOption);
+    });
+
+    $('#withdrawAmount').on('blur', function(e) {      
+        $('#continueWithdraw').attr('data-target', '#withdrawModal');
+        var minWithdraw = parseInt($(this).attr('min'));
+        var withdrawAmount = parseInt($(this).val().replace(',', ''));
+        if (isNaN(withdrawAmount)) {
+            $(this).val(minWithdraw.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+            $('#withdrawAmount1').text($(this).val());
+        } else {
+            if (minWithdraw > withdrawAmount) {
+                $(this).val(minWithdraw.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+                $('#withdrawAmount1').text($(this).val());
+            } else {
+                $(this).val(withdrawAmount.toLocaleString(undefined,{ minimumFractionDigits: 0}));
+                $('#withdrawAmount1').text($(this).val());
+            }
+        }
+    });
+
+    $('#withdrawCurrency').on('change', function() {
+        $('#withdrawCurrency1').val($(this).val());
+    });
+
+    $('#continueWithdraw').on('click', function() {
+        
+        if ($('#withdrawAmount').val() == '') {
+            $(this).attr('data-target', ' ');
+            $('#withdrawAmount').focus();
+        }
+    });
+});
+
+</script>
+{{/data}}

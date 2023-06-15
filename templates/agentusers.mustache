@@ -1,0 +1,116 @@
+<style>
+.layout{
+    margin-top: 15px;
+    padding: 10px;
+    text-color: white;
+    border: solid 1px #054ab3;
+    border-radius: 30px;
+}
+}
+</style>
+{{#data}}
+    <div class="nk-content ">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-content-wrap">
+                        <div class="nk-block-head nk-block-head-lg">
+                            <div class="nk-block-between-md g-4">
+                                <div class="nk-block-head-content">
+                                    <h2 class="nk-tle fw-normal">Agent Account</h2>
+                                    <div class="nk-block-des">
+                                        <p>You can add and remove agent users as you want.</p>
+                                    </div>
+                                    <div class="nk-block-des">
+                                        
+                                        <a href="#" class="link link-primary layout" id="composeMessage" data-toggle="modal" data-target="#create-agent-account"><em class="icon ni ni-plus"></em> <span>Create Agent Account</span></a>
+                                                                          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nk-block">
+                            <div class="card-inner p-0">
+                                <div class="nk-tb-list nk-tb-ulist is-compact">
+                                    <div class="nk-tb-item nk-tb-head">
+                                        <div class="nk-tb-col"><span class="sub-text">User</span></div>
+                                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Date Joined</span></div>
+                                        <div class="nk-tb-col"><span class="sub-text">Action</span></div>
+                                    </div><!-- .nk-tb-item -->
+                                    {{#users}}
+                                        <div class="nk-tb-item">
+                                            <div class="nk-tb-col">
+                                                <div class="user-card">
+                                                    <div class="user-avatar xs bg-primary">
+                                                        {{#hasPhoto}}
+                                                            <img src={{userPhoto}}>
+                                                        {{/hasPhoto}}
+                                                        {{^hasPhoto}}
+                                                            <span>{{userPhoto}}</span>
+                                                        {{/hasPhoto}}
+                                                    </div>
+                                                    <div class="user-name">
+                                                        <span class="lead-text">{{firstName}} &nbsp; {{lastName}}</span>
+                                                        <span class="sub-text">{{email}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="nk-tb-col tb-col-lg">
+                                                <span>{{dateCreated}}</span>
+                                            </div>
+                                            
+                                            <div class="nk-tb-col">
+                                                <div class="d-none d-md-inline">
+                                                    <a href="/agentUserDetails?userId={{id}}" class="link link-sm"><span>Client View</span></a>
+                                                    <a href="#" id="{{id}}" class="removeUser link link-sm link-danger"><span>Remove</span></a>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-tb-item -->
+
+                                    {{/users}}
+                                </div><!-- .nk-tb-list -->
+                            </div><!-- .card-inner -->
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="modal fade" id="myModaldeleteuser" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p style="text-align: center;">Do you want to remove this user?</p>
+                    </div>
+                    <div class="modal-footer" style="text-align: center;display: unset">
+                        <a class="deleteuserurl btn btn-primary" type="button" href="">Delete</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .tb-member-action .d-md-inline a {
+            font-size: 13px;
+            margin-right: 10px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.removeUser').on('click', function(){
+                $(".deleteuserurl").attr("href", "./agentUserDelete?userId="+ $(this).attr('id'));
+                $("#myModaldeleteuser").modal('show');
+                //     if (confirm('Do you want to remove this user?')) {
+                //         location.href = "/adminUserDelete?userId="+ $(this).attr('id');
+                //     }
+            });
+        });
+    </script>
+{{/data}}
